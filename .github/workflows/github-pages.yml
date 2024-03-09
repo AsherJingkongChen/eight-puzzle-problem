@@ -1,0 +1,52 @@
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  github-pages:
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v4
+
+      - id: setup-pages
+        name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - id: setup-bun
+        name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - id: install-dependencies
+        name: Install Dependencies
+        run: |
+          bun install
+
+      - id: build-from-source
+        name: Build from Source
+        run: |
+          bun run build
+
+      - id: upload-artifacts
+        name: Upload Artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - id: deploy
+        name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
