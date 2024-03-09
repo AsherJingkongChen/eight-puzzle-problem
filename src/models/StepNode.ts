@@ -10,10 +10,6 @@ export class StepNode<TNode> {
   }
 
   toString(): string {
-    let result = `${this.parentId ?? ''}`;
-    this.parentId && (result += ' --> ');
-    result += `${this.id}`;
-    result += `[\n${this.node}]`;
-    return result;
+    return `${this.parentId ?? "0((Start))"} -- ${this.id} --> ${this.id}[\n${this.node}]`;
   }
 }

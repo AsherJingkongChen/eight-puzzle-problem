@@ -1,7 +1,7 @@
 import { DLS } from ".";
 import { Solution } from "../models";
 
-export const IDDFS: Solution = function IDDFS({
+export const IDS: Solution = function IDS({
   sourceNode,
   targetNode,
 }) {
