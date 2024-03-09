@@ -17,7 +17,7 @@ export class Grid {
       | readonly [0, -1]
       | readonly [0, 1]
       | readonly [-1, 0]
-      | readonly [1, 0]
+      | readonly [1, 0],
   ): Grid | undefined {
     const result = new Grid(this);
 

@@ -34,7 +34,7 @@ const solution = answer
         answer
           ?.map(
             (step, i, a) =>
-              `${step}\n` + (i === a.length - 1 ? `${step.id} -.-> Goal` : "")
+              `${step}\n` + (i === a.length - 1 ? `${step.id} -.-> Goal` : ""),
           )
           .join(""),
     }

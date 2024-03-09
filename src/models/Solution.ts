@@ -1,4 +1,4 @@
-import { StepNode, Grid, } from ".";
+import { StepNode, Grid } from ".";
 
 export type Solution = (options: {
   sourceNode: Grid;
