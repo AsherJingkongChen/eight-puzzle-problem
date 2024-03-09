@@ -1,5 +1,6 @@
 {
   "name": "eight-puzzle-problem",
+  "description": "Eight Puzzle Problem in Vue 3",
   "private": true,
   "version": "0.0.0",
   "type": "module",
