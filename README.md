@@ -1,5 +1,11 @@
 # Eight Puzzle Problem in Vue 3
 
+## Demo
+
+[![GitHub Pages](https://img.shields.io/github/actions/workflow/status/AsherJingkongChen/eight-puzzle-problem/github-pages.yml?style=for-the-badge&logo=github&logoColor=white&label=GitHub%20Pages)](https://asherjingkongchen.github.io/eight-puzzle-problem/)
+
+## Development
+
 To start up the project, run the following commands:
 
 ```shell
