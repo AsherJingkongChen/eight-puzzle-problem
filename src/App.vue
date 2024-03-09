@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import Solution from "./components/Solution.vue";
-import { BFS, DLS, IDDFS } from "./solutions";
+import { BFS, IDDFS } from "./solutions";
+// import { DLS } from "./solutions";
 </script>
 
 <template>
   <Solution name="BFS" :procedure="BFS" />
-  <Solution name="DLS" :procedure="DLS" />
+  <!-- <Solution name="DLS" :procedure="DLS" /> -->
   <Solution name="IDDFS" :procedure="IDDFS" />
 </template>
 

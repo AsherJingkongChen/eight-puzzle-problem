@@ -40,6 +40,8 @@ const solution = answer
     }
   : undefined;
 
+solution && console.log(solution.mermaidText);
+
 let loaded = ref(false);
 onBeforeMount(async () => {
   mermaid.initialize({
