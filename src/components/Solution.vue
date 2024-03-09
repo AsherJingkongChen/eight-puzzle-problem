@@ -49,13 +49,16 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <h2>Solution: {{ name }}</h2>
-  <p v-if="walkedStepsCount">Walked Steps: {{ walkedStepsCount }}</p>
-  <pre class="mermaid" v-if="walkedStepsMermaidText">
+  <section class="solution">
+    <h2>Solution: {{ name }}</h2>
+    <p v-if="walkedStepsCount">Walked Steps: {{ walkedStepsCount }}</p>
+    <pre class="mermaid" v-if="walkedStepsMermaidText">
 flowchart TB
 {{ walkedStepsMermaidText }}
-  </pre>
-  <p v-else style="font-weight: bold; color: brown">No solution found</p>
+  </pre
+    >
+    <p v-else style="font-weight: bold; color: brown">No solution found</p>
+  </section>
 </template>
 
 <style scoped></style>
