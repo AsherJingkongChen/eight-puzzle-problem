@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { Grid, Solution } from "../models";
 import mermaid from "mermaid";
-import { onBeforeMount } from "vue";
+import { onBeforeMount, ref } from "vue";
 
 const { name, procedure } = defineProps<{
   name: string;
   procedure: Solution;
 }>();
 
-const walkedSteps = procedure({
+const answer = procedure({
   sourceNode: new Grid({
     position: [2, 1],
     records: [
@@ -26,38 +26,45 @@ const walkedSteps = procedure({
     ],
   }),
 });
+const solution = answer
+  ? {
+      stepsCount: answer?.length,
+      mermaidText:
+        "flowchart TD\n" +
+        answer
+          ?.map(
+            (step, i, a) =>
+              `${step}\n` + (i === a.length - 1 ? `${step.id} -.-> Goal` : "")
+          )
+          .join(""),
+    }
+  : undefined;
 
-const walkedStepsCount = walkedSteps?.length;
-const walkedStepsMermaidText = walkedSteps
-  ?.map(
-    (step, i, a) =>
-      `${step}\n` + (i === a.length - 1 ? `${step.id} -.-> Goal` : "")
-  )
-  .join("");
-
-onBeforeMount(() => {
+let loaded = ref(false);
+onBeforeMount(async () => {
   mermaid.initialize({
     theme: "neutral",
     themeCSS: `
       .nodeLabel { font-weight: bold; }
     `,
   });
-  mermaid.run({
+  await mermaid.run({
     querySelector: ".mermaid",
   });
+  loaded.value = true;
 });
 </script>
 
 <template>
   <section class="solution">
     <h2>Solution: {{ name }}</h2>
-    <p v-if="walkedStepsCount">Walked Steps: {{ walkedStepsCount }}</p>
-    <pre class="mermaid" v-if="walkedStepsMermaidText">
-flowchart TB
-{{ walkedStepsMermaidText }}
-  </pre
-    >
-    <p v-else style="font-weight: bold; color: brown">No solution found</p>
+    <div v-if="solution" v-show="loaded">
+      <p>Steps Count: {{ solution.stepsCount }}</p>
+      <pre class="mermaid">{{ solution.mermaidText }}</pre>
+    </div>
+    <div v-else>
+      <p style="font-weight: bold; color: brown">No solution found</p>
+    </div>
   </section>
 </template>
 
